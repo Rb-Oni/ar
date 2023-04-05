@@ -5,15 +5,32 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <title>AR</title>
 </head>
-<body style="margin : 0px; overflow: hidden;">
+<body style="margin : 0; overflow: hidden;">
 
 <a-scene embedded arjs>
     <a-marker preset="hiro">
-        <a-box position="0 0.5 0" material="color: white;" animation="property: rotation; to: 0 360 0; loop: true; dur: 3000">
+        <a-box position="0 0.5 0" material="change-color='color: #f00'"
+               animation="property: rotation; to: 0 360 0; loop: true; dur: 3000">
         </a-box>
     </a-marker>
-    <a-entity camera></a-entity>
+    <a-entity camera>
+        <a-cursor scale="0.5 0.5" color="#fff"></a-cursor>
+    </a-entity>
 </a-scene>
+
+<script>
+	AFRAME.registerComponent('change-color', {
+		schema: {
+			color: {default: '#666'}
+		},
+		init: function(){
+			var data = this.data;
+			this.el.addEventListener('click', function(){
+				this.setAttribute('color', data.color);
+			})
+		}
+	});
+</script>
 
 </body>
 </html>
