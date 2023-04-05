@@ -10,10 +10,12 @@
 <a-scene embedded arjs>
     <a-marker preset="hiro">
         <a-box position="0 0.5 0" change-color="color: blue"
-               animation="property: rotation; to: 0 360 0; loop: true; dur: 3000">
+               animation="property: rotation; to: 0 360 0; loop: true; dur: 3000"
+               id="mouseCursor" cursor="rayOrigin: mouse">
         </a-box>
     </a-marker>
-    <a-entity camera>
+    <a-entity camera  animation__mouseenter="property: components.material.material.color; type: color; to: blue; startEvents: mouseenter; dur: 500";
+              animation__mouseleave="property: components.material.material.color; type: color; to: red; startEvents: mouseleave; dur: 500";>>
         <a-cursor scale="0.5 0.5" color="#fff"></a-cursor>
     </a-entity>
 </a-scene>
